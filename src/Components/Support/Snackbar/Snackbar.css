@@ -1,0 +1,37 @@
+.snackbar {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 9999;
+  }
+  
+  .snackbar.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .snackbar-message {
+    margin-right: 16px;
+  }
+  
+  .snackbar-close {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .snackbar-close:focus {
+    outline: none;
+  }
+  

@@ -1,0 +1,207 @@
+.login {
+    background-image: url('./Resources/bgx.jpg');
+    background-size: 100% 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login .panel_blur {
+    margin-top: 60px;
+    width: 47.3vh;
+    height: 80.7vh;  /*Height Here*/
+    padding: 10%;
+    overflow-y: hidden;
+    border-radius: 13px;
+    position: absolute;
+	background: url("./Resources/bgx.jpg") no-repeat center fixed;
+	background-size: 100% 100%;
+    filter: blur(3px);
+  }
+
+.login ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.login .panel {
+    position: relative;
+    z-index: 1;
+}
+
+.login .panel__form-wrapper {
+    margin-top: 60px;
+    width: 47.5vh;
+    height: 81vh;  /*Height Here*/
+    padding: 10%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: hidden;
+    border-radius: 13px;
+}
+
+.login .panel__prev-btn {
+    width: 24px;
+    height: 24px;
+    background: none;
+    padding: 0;
+}
+
+.login .panel__prev-btn svg {
+    transition: fill 0.3s;
+}
+
+.login .panel__prev-btn:hover>svg {
+    fill: #ff1552;
+}
+
+.login .panel__headers {
+	padding: 10px 0;
+	text-align: center;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+
+  }
+
+  .login .panel__header {
+	font-size: 1.1rem;
+  }
+
+
+  .login .panel__header:first-child {
+	padding-bottom: 4px;
+  }
+  .login .panel__header.active > .panel__link {
+	color: #EDDDCD;
+	font-size: 3rem;
+  }
+  .login .panel__link {
+	color: inherit;
+	transition: all 0.3s;
+	font-weight: 600;
+  }
+
+  .login .form__row {
+	position: relative;
+	padding-top: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .login .form__row.has-error > .form__error:after {
+	display: block;
+  }
+
+  .login .form__input {
+	width: 100%;
+	padding: 5px 0;
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	background: none;
+  color: white;
+  }
+
+  .form__label{
+    color: white;
+  }
+
+  .login .form__input:focus, .form__input:active {
+	outline: 0;
+  }
+  .login .form__input:focus ~ .form__label, .form__input:active ~ .form__label, .form__input:valid ~ .form__label {
+	bottom: 30px;
+	font-size: 0.75rem;
+  }
+  .login .form__input:focus ~ .form__bar, .form__input:active ~ .form__bar {
+	left: 0;
+	right: 0;
+	width: 100%;
+  }
+
+  .login .form__bar {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	right: 50%;
+	display: block;
+	width: 0;
+	height: 2px;
+	background-color: #ff1552;
+	transition: all 0.3s;
+  }
+
+  .login .form__label {
+	position: absolute;
+	bottom: 5px;
+	left: 0;
+	width: 100%;
+	transition: all 0.3s;
+	pointer-events: none;
+  }
+  .login .form__submit {
+	width: 100%;
+	padding: 10px 0;
+	margin-top: 30px;
+	border: none;
+	border-radius: 10px;
+	font-weight: 600;
+	background-color: #ff1552;
+	cursor: pointer;
+    color: white;
+  }
+
+  .login .form__retrieve-pass {
+	display: block;
+	padding: 15px 0;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.5);
+	transition: all 0.3s;
+  }
+
+  .login .form__retrieve-pass:hover {
+	color: #fff;
+  }
+
+  .login .form__error {
+	position: absolute;
+	bottom: -20px;
+	display: block;
+	width: 100%;
+	height: 20px;
+	color: #ff1552;
+	font-size: 0.75rem;
+	line-height: 20px;
+  }
+  .login .form__error:after {
+	content: "x";
+	position: absolute;
+	bottom: 20px;
+	right: -20px;
+	display: none;
+	width: 20px;
+	height: 25px;
+	font-size: 1.125rem;
+	line-height: 25px;
+	text-align: center;
+	color: #ff1552;
+  }
+  .login .form__info {
+	text-align: center;
+  }
+
+  .login .panel__login-form.hidden,.panel__register-form.hidden, .panel__password-form.hidden {
+	display: none;
+  }
+
+  .login button {
+	padding: 0;
+	border: none;
+	background: none;
+	cursor: pointer;
+  }
+
+  .login a {
+	text-decoration: none;
+	cursor: pointer;
+  }

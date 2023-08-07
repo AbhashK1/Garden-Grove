@@ -1,0 +1,254 @@
+.dropdown-menu {
+    display: none;
+  }
+  
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .shopsec3 {
+    background-color: #faf3ef;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 170vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .shopsec3 .sec3-text {
+    margin-top: 50px;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    font-size: 50px;
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-style: bold;
+    color: rgb(46, 10, 5);
+  }
+  
+  .shopsec3 .grid-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: inherit;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    align-items: center;
+  }
+  
+  .shopsec3 .grid-item {
+    align-self: center;
+    background-color: inherit;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    background-color: #faf3ef;
+  }
+  
+  .shopsec3 .sc-c5eaa547-0 {
+    text-size-adjust: 100%;
+    --app-height: 100%;
+    font-family: "Work Sans", sans-serif;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: inherit;
+    padding: 0px;
+    width: calc(50% - 20px);
+    text-align: center;
+    margin: 10px;
+    display: grid;
+    background-color: #faf3ef;
+  }
+  
+  
+  
+  .shopsec3 .sc-c5eaa547-1 {
+    align-self: center;
+    text-align: center;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: 10px;
+    padding: 0px 8.93639px;
+    gap: 11.17px;
+    background: rgb(247, 200, 95);
+    border-radius: 2.2341px;
+    font-family: "Work Sans", sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 2.125rem;
+    letter-spacing: -0.02em;
+  
+  }
+  
+  .shopsec3 .sc-c5eaa547-2 {
+    text-size-adjust: 100%;
+    --app-height: 100%;
+    color: rgb(51, 51, 51);
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0px;
+    font-family: "DM Serif Text", serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.625rem;
+    line-height: 2rem;
+    margin: 8px 0px 4px;
+  }
+  
+  .shopsec3 .sc-c5eaa547-3 {
+    text-size-adjust: 100%;
+    --app-height: 100%;
+    font-family: "Work Sans", sans-serif;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0px;
+    font-weight: 600;
+    line-height: 1.125rem;
+    color: rgb(112, 112, 112);
+    margin: 4px 0px;
+  }
+  
+  .shopsec3 .sc-c5eaa547-4 {
+    text-size-adjust: 100%;
+    --app-height: 100%;
+    font-family: "Work Sans", sans-serif;
+    color: rgb(51, 51, 51);
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0px;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    margin: 8px 0px;
+    max-width: 214px;
+  }
+  
+  
+  .shopsec3 .add-cart {
+    color: whitesmoke;
+    background: #46e104;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 8px 12px;
+    border: 1px solid #f3f3f3;
+    border-radius: 5px;
+    display: flex;
+    transition: all 0.3s ease;
+  }
+  
+  .shopsec3 .add-cart:hover {
+    color: #fff;
+    background: #fd7b19;
+    border-color: #fd7b19;
+  }
+  
+  .shopsec3 .btn-add-cart {
+    padding-left: 25px;
+  }
+  
+  
+  .shopsec3 .button-25 {
+    margin-top: 40px;
+    z-index: 1;
+    position: relative;
+    width: 200px;
+    height: 50px;
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+  }
+  
+  .shopsec3 .button-25:hover,
+  .button-25:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+  }
+  
+  .shopsec3 .button-25:active {
+    opacity: .5;
+  }
+  
+  @media (max-width: 768px) {
+  
+    .shopsec3 .grid-container {
+      grid-template-columns: auto auto;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  
+    .shopsec3 .grid-item {
+      padding: 5px;
+    }
+  
+    .shopsec3{
+      height: max-content;
+    }
+  
+    .shopsec3 .sec3-text {
+      font-size: 30px;
+    }
+  
+    .shopsec3 .sc-4e67e03b-2 {
+      margin-top: 50px;
+      position: relative;
+      text-size-adjust: 100%;
+      --app-height: 100%;
+      font-family: "Work Sans", sans-serif;
+      font-weight: normal;
+      color: rgb(51, 51, 51);
+      -webkit-font-smoothing: antialiased;
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      box-sizing: inherit;
+      -webkit-tap-highlight-color: transparent;
+      display: grid;
+      border-top: 1px solid rgb(51, 51, 51);
+      border-bottom: 1px solid rgb(51, 51, 51);
+      padding: 40px 0px;
+    }
+  
+    .shopsec3 .button-25 {
+      margin-bottom: 20px;
+    }
+  
+  }
