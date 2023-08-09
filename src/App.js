@@ -12,6 +12,7 @@ import Checkout from './Components/Dashboard/Checkout/Checkout';
 import Login from './Components/Auth/Login/Login';
 import Membership from './Components/Dashboard/Membership/Membership';
 import Terms from './Components/Dashboard/Terms/Terms';
+import Contact from './Components/Dashboard/Contact/Contact';
 import { AuthProvider } from './Components/Auth/AuthContext/AuthContext';
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
           <Route exact path="/register" element={<Login state={register} setUser={setUser}/>}></Route>
           <Route exact path="/membership" element={<><Header /> <Membership /><Footer /></>}></Route>
           <Route exact path="/terms" element={<><Header /> <Terms /><Footer /></>}></Route>
+          <Route exact path="/contact" element={<><Header /> <Contact /><Footer /></>}></Route>
         </Routes>
       </AuthProvider>
     </Router>

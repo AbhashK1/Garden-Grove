@@ -50,8 +50,8 @@ function Footer() {
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><Link to="/index" class="nav-link p-0 text-white" >Home</Link></li>
                             <li class="nav-item mb-2"><Link to="/membership" class="nav-link p-0 text-white" >Membership</Link></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white" >FAQs</a></li>
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white" >About</a></li>
+                            <li class="nav-item mb-2"><Link to="/contact" class="nav-link p-0 text-white" >Contact Us</Link></li>
                         </ul>
                     </div>
 
