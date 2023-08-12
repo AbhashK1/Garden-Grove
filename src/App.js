@@ -13,6 +13,8 @@ import Login from './Components/Auth/Login/Login';
 import Membership from './Components/Dashboard/Membership/Membership';
 import Terms from './Components/Dashboard/Terms/Terms';
 import Contact from './Components/Dashboard/Contact/Contact';
+import Find from './Components/Dashboard/Find/Find';
+import Profile from './Components/Dashboard/Profile/Profile';
 import { AuthProvider } from './Components/Auth/AuthContext/AuthContext';
 
 function App() {
@@ -70,6 +72,8 @@ function App() {
           <Route exact path="/membership" element={<><Header /> <Membership /><Footer /></>}></Route>
           <Route exact path="/terms" element={<><Header /> <Terms /><Footer /></>}></Route>
           <Route exact path="/contact" element={<><Header /> <Contact /><Footer /></>}></Route>
+          <Route exact path="/find" element={<><Header /> <Find /><Footer /></>}></Route>
+          <Route exact path="/profile" element={<><Header /> <Profile /><Footer /></>}></Route>
         </Routes>
       </AuthProvider>
     </Router>

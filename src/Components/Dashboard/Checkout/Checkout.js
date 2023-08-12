@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Auth/AuthContext/AuthContext'
 import { Link } from 'react-router-dom';
@@ -31,12 +31,15 @@ function Copyright() {
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step, cartItems, bill) {
+function getStepContent(step, cartItems, bill, addressDetails, paymentDetails, handleAddressFormChange, handlePaymentFormChange) {
+
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm addressDetails={addressDetails}
+      onChange={handleAddressFormChange}/>;
     case 1:
-      return <PaymentForm />;
+      return <PaymentForm paymentDetails={paymentDetails}
+      onChange={handlePaymentFormChange}/>;
     case 2:
       return <Review cartItems={cartItems} bill={bill} />;
     default:
@@ -56,6 +59,31 @@ export default function Checkout({ cartItems, bill }) {
 
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  const [addressDetails, setAddressDetails] = React.useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    state:'',
+    zip:'',
+    country:'',
+  });
+
+  const [paymentDetails, setPaymentDetails] = React.useState({
+    cardNumber: '',
+    cardHolderName: '',
+    expirationDate: '',
+    cvv:'',
+  });
+
+  const handleAddressFormChange = (newAddressDetails) => {
+    setAddressDetails(newAddressDetails);
+  };
+
+  const handlePaymentFormChange = (newPaymentDetails) => {
+    setPaymentDetails(newPaymentDetails);
+  };
 
   useEffect(() => {
     if (!user) {
@@ -111,7 +139,7 @@ export default function Checkout({ cartItems, bill }) {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  {getStepContent(activeStep, cartItems, bill)}
+                  {getStepContent(activeStep, cartItems, bill, addressDetails, paymentDetails, handleAddressFormChange, handlePaymentFormChange)}
                   <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     {activeStep !== 0 && (
                       <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

@@ -33,8 +33,9 @@ function Header() {
                                         <Link to="/checkout" class="dropdown-item">Checkout</Link>
                                     </div>
                                 </li>
+                                <li class="nav-item"><Link to="/find" class="nav-link text-white">Find</Link></li>
                                 <li class="nav-item"><Link to="/membership" class="nav-link text-white">Membership</Link></li>
-                                <li class="nav-item"><a href="#" class="nav-link text-white">About</a></li>
+                                <li class="nav-item"><Link to="/contact" class="nav-link text-white">Contact</Link></li>
                             </ul>
                         </div>
                     </nav>
@@ -43,7 +44,7 @@ function Header() {
                     {user ? (
                         <ul class="nav col-auto">
                             <li class="nav-item" style={{ marginRight: '20px' }}>
-                                <a href="#" style={{
+                                <Link to="/profile" style={{
                                     display: 'inline-block',
                                     width: '40px',
                                     height: '40px',
@@ -59,7 +60,7 @@ function Header() {
                                         maxWidth: '100%',
                                         maxHeight: '100%'
                                     }} />
-                                </a>
+                                </Link>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-outline-warning me-2"
