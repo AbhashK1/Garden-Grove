@@ -1,11 +1,12 @@
 import './Profile.css'
+import profile from './profile.jpg'
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react'; // Import useEffect
 import back from './back.jpg'
 import { Link } from 'react-router-dom';
 function Profile() {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const userx = localStorage.getItem('user');
     const parsedUser = JSON.parse(userx);
     useEffect(() => {
@@ -33,7 +34,6 @@ function Profile() {
                         <div class="col-lg-7 col-md-10">
                             <h1 class="display-2 text-white">Hello {parsedUser.name},</h1>
                             <p class="text-white mt-0 mb-5">This is your profile page. You can see the details of your orders and membership here.</p>
-                            <a href="#!" class="btn btn-info">Edit profile</a>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ function Profile() {
                                 <div class="col-lg-3 order-lg-2">
                                     <div class="card-profile-image">
                                         <a href="#">
-                                            <img src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg" class="rounded-circle" />
+                                            <img src={profile} class="rounded-circle" />
                                         </a>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@ function Profile() {
                                         <i class="ni education_hat mr-2"></i>Premium Member
                                     </div>
                                     <hr class="my-4" />
-                                    <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+                                    <p>Previous Order Here</p>
                                 </div>
                             </div>
                         </div>
@@ -96,30 +96,21 @@ function Profile() {
                                     <div class="pl-lg-4">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <div class="form-group focused">
-                                                    <label class="form-control-label" for="input-username">Username</label>
-                                                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="lucky.jesse" />
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-email">Email address</label>
+                                                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder={parsedUser.email} />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-email">Email address</label>
-                                                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com" />
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-first-name">Full name</label>
+                                                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder={parsedUser.name} />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group focused">
-                                                    <label class="form-control-label" for="input-first-name">First name</label>
-                                                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group focused">
-                                                    <label class="form-control-label" for="input-last-name">Last name</label>
-                                                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse" />
-                                                </div>
+                                            <div class="col-4 text-left">
+                                                <a href="#!" class="btn btn-sm btn-primary">Update Info</a>
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +122,7 @@ function Profile() {
                                             <div class="col-md-12">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label" for="input-address">Address</label>
-                                                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text" />
+                                                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Race Course" type="text" />
                                                 </div>
                                             </div>
                                         </div>
@@ -139,13 +130,13 @@ function Profile() {
                                             <div class="col-lg-4">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label" for="input-city">City</label>
-                                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York" />
+                                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="Dehradun" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label" for="input-country">Country</label>
-                                                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="United States" />
+                                                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="India" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -155,16 +146,13 @@ function Profile() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <hr class="my-4" />
-
-                                    <h6 class="heading-small text-muted mb-4">About me</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="form-group focused">
-                                            <label>About Me</label>
-                                            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+                                        <div class="row">
+                                            <div class="col-4 text-left">
+                                                <a href="#!" class="btn btn-sm btn-primary">Update Address</a>
+                                            </div>
                                         </div>
                                     </div>
+                                    <hr class="my-4" />
                                 </form>
                             </div>
                         </div>

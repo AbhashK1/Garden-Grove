@@ -15,6 +15,7 @@ import Terms from './Components/Dashboard/Terms/Terms';
 import Contact from './Components/Dashboard/Contact/Contact';
 import Find from './Components/Dashboard/Find/Find';
 import Profile from './Components/Dashboard/Profile/Profile';
+import Product from './Components/Dashboard/Product/Product';
 import { AuthProvider } from './Components/Auth/AuthContext/AuthContext';
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           <Route exact path="/contact" element={<><Header /> <Contact /><Footer /></>}></Route>
           <Route exact path="/find" element={<><Header /> <Find /><Footer /></>}></Route>
           <Route exact path="/profile" element={<><Header /> <Profile /><Footer /></>}></Route>
+          <Route exact path="/product" element={<><Header /> <Product /><Footer /></>}></Route>
         </Routes>
       </AuthProvider>
     </Router>

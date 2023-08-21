@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../AuthContext/AuthContext';
 import { AuthProvider } from '../AuthContext/AuthContext';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import './Login.css';
 
 function useLoginx(state) {
@@ -43,6 +45,16 @@ function Loginx({ state, setUser }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
+
+
     const handleRegister = async (e) => {
         e.preventDefault();
 
@@ -55,7 +67,12 @@ function Loginx({ state, setUser }) {
             console.log('User registered successfully');
             navigate('/login');
         } catch (error) {
-            console.error('An error occurred', error);
+            setSnackbarOpen(true);
+            if (error.response && error.response.status === 409) {
+                setSnackbarMessage('Registration Failed: User Already Exists');
+            } else {
+                setSnackbarMessage('Registration Failed');
+            }
         }
     };
 
@@ -73,12 +90,17 @@ function Loginx({ state, setUser }) {
             console.log('User logged in successfully');
             navigate(-1);
         } catch (error) {
-            console.error('Login failed', error);
+            setSnackbarOpen(true);
+            if (error.response && error.response.status === 401) {
+                setSnackbarMessage('Login failed: Invalid credentials');
+            } else {
+                setSnackbarMessage('Login failed');
+            }
         }
     };
 
     return (
-        <div className="login">
+        <><div className="login">
             <div className="panel_blur"></div>
             <div className="panel">
                 <div className="panel__form-wrapper">
@@ -220,7 +242,11 @@ function Loginx({ state, setUser }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div><Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+                <MuiAlert onClose={handleSnackbarClose} severity="error" sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </MuiAlert>
+            </Snackbar></>
     );
 }
 

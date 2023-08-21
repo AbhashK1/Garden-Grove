@@ -7,6 +7,12 @@ import icon from './Resources/icon.png'
 function Header() {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const handleNavbarToggle = () => {
+        const navbar = document.getElementById('navbarNavDropdown');
+        if (navbar) {
+            navbar.classList.toggle('show');
+        }
+    };
 
     return (
         <header class="p-3 text-bg-dark sticky-top">
@@ -16,9 +22,15 @@ function Header() {
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                         <Link to="/index" class="navbar-brand mb-0 h1"><img src={icon} style={{ width: '45px', height: '30px' }} /></Link>
                         <Link to="/index" class="navbar-brand mb-0 h1">Garden Grove</Link>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                            aria-label="Toggle navigation">
+                        <button 
+                            class="navbar-toggler" 
+                            type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" 
+                            aria-controls="navbarNavDropdown" 
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                            onClick={handleNavbarToggle}
+                            >
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <span style={{ width: 60 }}></span>

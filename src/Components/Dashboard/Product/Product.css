@@ -1,0 +1,94 @@
+.section-product{
+    min-height: 80vh;
+    background-color: #eee;
+}
+
+.section-product .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .section-product .header {
+    margin: 10px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .section-product .divider {
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .section-product .graph-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .section-product .graph {
+    flex: 70;
+    padding: 20px;
+    border: 1px solid #ccc;
+    height: 60vh;
+    background-color: white;
+  }
+
+  .section-product .cardx {
+    flex: 30;
+    padding: 20px;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+  }
+
+  .section-product .cardy{
+    display:flex;
+    flex-direction: column;
+  }
+
+  .section-product .card{
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    height:160px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .section-product .cardtext{
+    margin: 14px;
+    align-items: center;
+  }
+
+  .section-product .card2{
+    background-color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    height:210px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 0.5px;
+  }
+
+  @media (max-width: 768px) {
+    .section-product .graph-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+
+      .section-product .cardx {
+        padding: 20px;
+        margin-right: 20px;
+        border: 1px solid #ccc;
+        margin-top: 30px;
+      }
+  }

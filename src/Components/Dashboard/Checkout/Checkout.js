@@ -8,7 +8,6 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
 import Review from './Review';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -29,19 +28,16 @@ function Copyright() {
   );
 }
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Shipping address','Review your order'];
 
-function getStepContent(step, cartItems, bill, addressDetails, paymentDetails, handleAddressFormChange, handlePaymentFormChange) {
+function getStepContent(step, cartItems, bill, addressDetails, handleAddressFormChange) {
 
   switch (step) {
     case 0:
       return <AddressForm addressDetails={addressDetails}
       onChange={handleAddressFormChange}/>;
     case 1:
-      return <PaymentForm paymentDetails={paymentDetails}
-      onChange={handlePaymentFormChange}/>;
-    case 2:
-      return <Review cartItems={cartItems} bill={bill} />;
+      return <Review cartItems={cartItems} bill={bill} addressDetails={addressDetails} />;
     default:
       throw new Error('Unknown step');
   }
@@ -68,21 +64,11 @@ export default function Checkout({ cartItems, bill }) {
     state:'',
     zip:'',
     country:'',
-  });
-
-  const [paymentDetails, setPaymentDetails] = React.useState({
-    cardNumber: '',
-    cardHolderName: '',
-    expirationDate: '',
-    cvv:'',
+    saveAddress:''
   });
 
   const handleAddressFormChange = (newAddressDetails) => {
     setAddressDetails(newAddressDetails);
-  };
-
-  const handlePaymentFormChange = (newPaymentDetails) => {
-    setPaymentDetails(newPaymentDetails);
   };
 
   useEffect(() => {
@@ -101,12 +87,13 @@ export default function Checkout({ cartItems, bill }) {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  
 
   return (
     <div style={{ backgroundColor: '#d1fce2', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <CssBaseline />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }} >
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }} style={{ backgroundColor: '#faf3ef', borderRadius: '20px' }}>
+        <Paper variant="outlined" sx={{my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }} style={{ backgroundColor: '#faf3ef', borderRadius: '20px' }}>
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
@@ -139,7 +126,7 @@ export default function Checkout({ cartItems, bill }) {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  {getStepContent(activeStep, cartItems, bill, addressDetails, paymentDetails, handleAddressFormChange, handlePaymentFormChange)}
+                  {getStepContent(activeStep, cartItems, bill, addressDetails, handleAddressFormChange)}
                   <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     {activeStep !== 0 && (
                       <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
@@ -152,7 +139,7 @@ export default function Checkout({ cartItems, bill }) {
                       onClick={handleNext}
                       sx={{ mt: 3, ml: 1 }}
                     >
-                      {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                      {activeStep === steps.length - 1 ? 'Proceed To Payment' : 'Next'}
                     </Button>
                   </Box>
                 </React.Fragment>

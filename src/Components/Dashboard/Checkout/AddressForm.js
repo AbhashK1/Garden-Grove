@@ -3,9 +3,34 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Test() {
+export default function Test({ onChange }) {
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
+    saveAddress: false,
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value, checked } = event.target;
+    const updatedData = name === 'saveAddress' ? { ...formData, [name]: checked } : { ...formData, [name]: value };
+    setFormData(updatedData);
+    onChange(updatedData);
+  };
+
+  if(formData.saveAddress==true) //Save Address to dbase Here with email
+  {
+    console.log(formData);
+  }
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -21,6 +46,8 @@ export default function Test() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            value={formData.firstName}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -32,6 +59,8 @@ export default function Test() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={formData.lastName}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12}>
@@ -43,6 +72,8 @@ export default function Test() {
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
+            value={formData.address1}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12}>
@@ -53,6 +84,8 @@ export default function Test() {
             fullWidth
             autoComplete="shipping address-line2"
             variant="standard"
+            value={formData.address2}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -64,6 +97,8 @@ export default function Test() {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
+            value={formData.city}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -73,6 +108,8 @@ export default function Test() {
             label="State/Province/Region"
             fullWidth
             variant="standard"
+            value={formData.state}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -84,6 +121,8 @@ export default function Test() {
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
+            value={formData.zip}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -95,11 +134,13 @@ export default function Test() {
             fullWidth
             autoComplete="shipping country"
             variant="standard"
+            value={formData.country}
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+            control={<Checkbox color="secondary" name="saveAddress" checked={formData.saveAddress} onChange={handleInputChange} />}
             label="Use this address for payment details"
           />
         </Grid>
