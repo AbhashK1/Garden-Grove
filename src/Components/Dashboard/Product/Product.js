@@ -44,15 +44,15 @@ function Product() {
 
     console.log(predictedprice);
 
-
-    const days = Array.from({ length: price.length }, (_, i) => i + 1);
+    const sprice=price.slice(-15);
+    const days = Array.from({ length: sprice.length }, (_, i) => i + 1);
 
     const data = {
         labels: days,
         datasets: [
             {
                 label: vegetableName,
-                data: price,
+                data: sprice,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
