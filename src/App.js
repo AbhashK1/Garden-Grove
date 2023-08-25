@@ -67,7 +67,7 @@ function App() {
           <Route exact path="/index" element={<><Header /> <Main products={products} /><Footer /></>}></Route>
           <Route exact path="/shop" element={<><Header /> <Shop products={products} addToCart={addToCart} /><Footer /></>}></Route>
           <Route exact path="/cart" element={<><Header /> <CartPage cartItems={cartItems} setCartItems={setCartItems} bill={bill} setBill={setBill} /><Footer /></>}></Route>
-          <Route exact path="/checkout" element={<><Header /> <Checkout cartItems={cartItems} bill={bill} /><Footer /></>}></Route>
+          <Route exact path="/checkout" element={<><Header /> <Checkout cartItems={cartItems} setCartItems={setCartItems} bill={bill} /><Footer /></>}></Route>
           <Route exact path="/login" element={<Login state={login} setUser={setUser} />}></Route>
           <Route exact path="/register" element={<Login state={register} setUser={setUser}/>}></Route>
           <Route exact path="/membership" element={<><Header /> <Membership /><Footer /></>}></Route>
