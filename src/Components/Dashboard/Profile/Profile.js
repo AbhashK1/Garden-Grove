@@ -2,13 +2,27 @@ import './Profile.css'
 import profile from './profile.jpg'
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect } from 'react'; // Import useEffect
+import { useEffect } from 'react'; // Import useEffect
 import back from './back.jpg'
 import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 function Profile() {
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [postalCode, setPostalCode] = useState('');
+
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+
     const navigate = useNavigate();
     const userx = localStorage.getItem('user');
     const parsedUser = JSON.parse(userx);
+    const [name, setName] = useState('');
     useEffect(() => {
         if (!parsedUser) {
             navigate('/index');
@@ -18,6 +32,59 @@ function Profile() {
     if (!parsedUser) {
         return null;
     }
+
+    const handleUpdateInfo = event => {
+        event.preventDefault();
+        const updatedInfo = {
+            email: parsedUser.email,
+            name
+        };
+
+        axios.post('http://localhost:4000/updateInfo', updatedInfo)
+            .then(response => {
+                console.log(response.data.message);
+                setSnackbarOpen(true);
+                setSnackbarMessage(response.data.message);
+                setName('');
+            })
+            .catch(error => {
+                console.error('Error updating address:', error);
+            });
+    };
+
+    const handleUpdateAddress = event => {
+        event.preventDefault();
+        const updatedAddress = {
+            email: parsedUser.email,
+            address,
+            city,
+            state,
+            zip: postalCode,
+        };
+
+        axios.post('http://localhost:4000/updateAddress', updatedAddress)
+            .then(response => {
+                console.log(response.data.message);
+                setSnackbarOpen(true);
+                setSnackbarMessage(response.data.message);
+                setAddress('');
+                setCity('');
+                setState('');
+                setPostalCode('');
+            })
+            .catch(error => {
+                console.error('Error updating address:', error);
+                setSnackbarOpen(true);
+                setSnackbarMessage('Some Error Occurred');
+            });
+    };
+
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
+
     return (
         <div className="profile"><div class="main-content">
             <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style={{
@@ -103,14 +170,17 @@ function Profile() {
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group focused">
-                                                    <label class="form-control-label" for="input-first-name">Full name</label>
-                                                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder={parsedUser.name} />
+                                                    <label class="form-control-label" for="input-full-name">Full name</label>
+                                                    <input type="text" id="input-full-name" class="form-control form-control-alternative" placeholder={parsedUser.name}
+                                                        value={name} onChange={e => setName(e.target.value)} />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-4 text-left">
-                                                <a href="#!" class="btn btn-sm btn-primary">Update Info</a>
+                                                <button className="btn btn-sm btn-primary" onClick={(event) => handleUpdateInfo(event)}>
+                                                    Update Info
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +192,8 @@ function Profile() {
                                             <div class="col-md-12">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label" for="input-address">Address</label>
-                                                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Race Course" type="text" />
+                                                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value={address}
+                                                        onChange={e => setAddress(e.target.value)} type="text" />
                                                 </div>
                                             </div>
                                         </div>
@@ -130,25 +201,30 @@ function Profile() {
                                             <div class="col-lg-4">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label" for="input-city">City</label>
-                                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="Dehradun" />
+                                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value={city}
+                                                        onChange={e => setCity(e.target.value)} />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group focused">
-                                                    <label class="form-control-label" for="input-country">Country</label>
-                                                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="India" />
+                                                    <label class="form-control-label" for="input-state">State</label>
+                                                    <input type="text" id="input-state" class="form-control form-control-alternative" placeholder="State" value={state}
+                                                        onChange={e => setState(e.target.value)} />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-country">Postal code</label>
-                                                    <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" />
+                                                    <input type="text" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code"
+                                                        value={postalCode} onChange={e => setPostalCode(e.target.value)} />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-4 text-left">
-                                                <a href="#!" class="btn btn-sm btn-primary">Update Address</a>
+                                                <button className="btn btn-sm btn-primary" onClick={(event) => handleUpdateAddress(event)}>
+                                                    Update Address
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -172,7 +248,13 @@ function Profile() {
                         </Typography>
                     </div>
                 </div>
-            </footer></div>
+            </footer>
+            <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+                <MuiAlert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </MuiAlert>
+            </Snackbar>
+        </div>
     )
 }
 
