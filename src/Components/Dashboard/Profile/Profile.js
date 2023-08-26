@@ -11,6 +11,25 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
 function Profile() {
+    const navigate = useNavigate();
+    const userx = localStorage.getItem('user');
+    const parsedUser = JSON.parse(userx);
+    const [userData, setUserData] = useState(null);
+    useEffect(() => {
+        if (!parsedUser) {
+            navigate('/index');
+        } else if(parsedUser) {
+            //console.log(parsedUser);
+            axios.get(`http://localhost:4000/getUser?email=${parsedUser.email}`)
+                .then(response => {
+                    setUserData(response.data);
+                    //console.log(response.data); // Save the response data in the state
+                })
+                .catch(error => {
+                    console.log("Error Occured", error)
+                });
+        }
+    }, []);
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -19,15 +38,10 @@ function Profile() {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
 
-    const navigate = useNavigate();
-    const userx = localStorage.getItem('user');
-    const parsedUser = JSON.parse(userx);
     const [name, setName] = useState('');
-    useEffect(() => {
-        if (!parsedUser) {
-            navigate('/index');
-        }
-    }, []);
+
+    //console.log(parsedUser);
+    //console.log(userData);
 
     if (!parsedUser) {
         return null;
@@ -137,7 +151,7 @@ function Profile() {
                                     </div>
 
                                     <div>
-                                        <i class="ni education_hat mr-2"></i>Premium Member
+                                        <i class="ni education_hat mr-2"></i>{(userData && userData.premiumUser) ? 'Premium Member' : 'Standard User'}
                                     </div>
                                     <hr class="my-4" />
                                     <p>Previous Order Here</p>
@@ -192,7 +206,7 @@ function Profile() {
                                             <div class="col-md-12">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label" for="input-address">Address</label>
-                                                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value={address}
+                                                    <input id="input-address" class="form-control form-control-alternative" placeholder={userData?userData.address.address:null} value={address}
                                                         onChange={e => setAddress(e.target.value)} type="text" />
                                                 </div>
                                             </div>
@@ -201,21 +215,21 @@ function Profile() {
                                             <div class="col-lg-4">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label" for="input-city">City</label>
-                                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value={city}
+                                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder={userData?userData.address.city:null} value={city}
                                                         onChange={e => setCity(e.target.value)} />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label" for="input-state">State</label>
-                                                    <input type="text" id="input-state" class="form-control form-control-alternative" placeholder="State" value={state}
+                                                    <input type="text" id="input-state" class="form-control form-control-alternative" placeholder={userData?userData.address.state:null} value={state}
                                                         onChange={e => setState(e.target.value)} />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-country">Postal code</label>
-                                                    <input type="text" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code"
+                                                    <input type="text" id="input-postal-code" class="form-control form-control-alternative" placeholder={userData?userData.address.zip:null}
                                                         value={postalCode} onChange={e => setPostalCode(e.target.value)} />
                                                 </div>
                                             </div>

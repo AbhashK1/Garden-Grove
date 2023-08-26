@@ -1,18 +1,38 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../Auth/AuthContext/AuthContext';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import user_img from './Resources/man.png'
 import icon from './Resources/icon.png'
 
 function Header() {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const [userData, setUserData] = useState(null);
     const handleNavbarToggle = () => {
         const navbar = document.getElementById('navbarNavDropdown');
         if (navbar) {
             navbar.classList.toggle('show');
         }
     };
+
+    const userx = localStorage.getItem('user');
+    const parsedUser = JSON.parse(userx);
+    useEffect(() => {
+        if (!parsedUser) {
+            navigate('/index');
+        } else {
+            axios.get(`http://localhost:4000/getUser?email=${parsedUser.email}`)
+                .then(response => {
+                    setUserData(response.data); // Save the response data in the state
+                })
+                .catch(error => {
+                    // Handle the error, e.g. show an error message
+                });
+        }
+    }, [parsedUser]);
+    //console.log(userData);
 
     return (
         <header class="p-3 text-bg-dark sticky-top">
@@ -45,8 +65,12 @@ function Header() {
                                         <Link to="/checkout" class="dropdown-item">Checkout</Link>
                                     </div>
                                 </li>
-                                <li class="nav-item"><Link to="/find" class="nav-link text-white">Find</Link></li>
-                                <li class="nav-item"><Link to="/membership" class="nav-link text-white">Membership</Link></li>
+                                {(userData && userData.premiumUser) ? (
+                                    <li class="nav-item"><Link to="/find" class="nav-link text-white">Find</Link></li>
+                                ) : null}
+                                {(parsedUser && userData && !userData.premiumUser) || !parsedUser ? (
+                                    <li class="nav-item"><Link to="/membership" class="nav-link text-white">Membership</Link></li>
+                                ) : null}
                                 <li class="nav-item"><Link to="/contact" class="nav-link text-white">Contact</Link></li>
                             </ul>
                         </div>
